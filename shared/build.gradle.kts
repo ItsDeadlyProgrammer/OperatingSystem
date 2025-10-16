@@ -1,6 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -108,4 +107,7 @@ android {
     buildFeatures {
         compose = true
     }
+
+    
+
 }
