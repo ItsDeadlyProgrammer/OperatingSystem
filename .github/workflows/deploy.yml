@@ -1,0 +1,58 @@
+name: Deploy WasmJs App to GitHub Pages
+
+on:
+  # Triggers the workflow on pushes to the main branch
+  push:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Grant GITHUB_TOKEN the necessary permissions
+permissions:
+  contents: read      # Required to fetch the repository content
+  pages: write        # Required to deploy to GitHub Pages
+  id-token: write     # Required for OIDC authentication by actions/deploy-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ✅ Checkout code
+        uses: actions/checkout@v4
+
+      # Set up JDK 21 (Recommended for modern Kotlin/Compose projects)
+      - name: ⚙️ Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      # Set up Gradle for caching and permissions
+      - name: ⚙️ Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # Grant execution permission to the gradlew script
+      - name: 🔒 Change Gradle Wrapper Permissions
+        run: chmod +x gradlew
+
+      # Build the WasmJs App using the same command as your Netlify config
+      - name: 🛠️ Build WasmJS App
+        # Note: We use :composeApp:wasmJsBrowserDistribution assuming 'composeApp' is your module name.
+        run: ./gradlew :composeApp:wasmJsBrowserDistribution
+
+      # Configure GitHub Pages environment
+      - name: 📄 Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # Upload the built artifact
+      - name: 📤 Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # This path MUST match the `publish` directory in your previous netlify.toml
+          path: 'composeApp/build/dist/wasmJs/productionExecutable'
+
+      # Deploy the artifact to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
