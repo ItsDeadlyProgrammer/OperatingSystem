@@ -102,9 +102,9 @@ Download the standalone APK to install on your Android device:
 
 ### 💻 Desktop Download
 
-Download the runnable Fat JAR file for JVM Desktop environments:
+Download the dedicated **MSI installer package** for Windows:
 
-[![Download JAR](https://img.shields.io/badge/Download-JAR-blue?style=for-the-badge&logo=java)](https://github.com/ItsDeadlyProgrammer/OperatingSystem/releases/download/v1.0.0/OperatingSystem-1.0.0.msi)
+[![Download MSI](https://img.shields.io/badge/Download-MSI-blue?style=for-the-badge&logo=windows)](https://github.com/ItsDeadlyProgrammer/OperatingSystem/releases/download/v1.0.0/OperatingSystem-1.0.0.msi)
 
 ---
 
