@@ -1,68 +1,116 @@
-This is a Kotlin Multiplatform project targeting Android, Web, Desktop (JVM).
+# 💻 OS Simulator: Multi-Platform OS Concepts
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
+Welcome to **OS Simulator** — a comprehensive, multi-platform application designed to visualize and simulate core Operating System concepts, including **Process Scheduling**, **Deadlock Management**, and **Continuous Memory Allocation**. Built with **Kotlin Multiplatform (KMP)**, it provides a consistent experience across Desktop, Android, and Web platforms.
 
-* [/shared](./shared/src) is for the code that will be shared between all targets in the project.
-  The most important subfolder is [commonMain](./shared/src/commonMain/kotlin). If preferred, you
-  can add code to the platform-specific folders here too.
+## ✨ Features
 
-### Build and Run Android Application
+This simulator provides dynamic visualization and calculation across three major operating system domains:
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+### 1. ⏱️ CPU Process Scheduling
 
-### Build and Run Desktop (JVM) Application
+* **Algorithms Implemented:** Simulate and compare six classic algorithms:
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+    * First-Come, First-Served (FCFS)
 
-### Build and Run Web Application
+    * Shortest Job First (SJF) (Preemptive and Non-Preemptive)
 
-To build and run the development version of the web app, use the run configuration from the run widget
-in your IDE's toolbar or run it directly from the terminal:
-- for the Wasm target (faster, modern browsers):
-  - on macOS/Linux
-    ```shell
-    ./gradlew :composeApp:wasmJsBrowserDevelopmentRun
+    * Shortest Remaining Time First (SRTF)
+
+    * Round Robin (RR)
+
+    * Priority Scheduling (Preemptive and Non-Preemptive)
+
+* **Visualization:** Dynamic **Gantt Chart** visualization of process execution.
+
+* **Metrics:** Calculates and displays key performance metrics: **Average Waiting Time (AWT)** and **Average Turnaround Time (ATT)**.
+
+### 2. 🚦 Deadlock Detection & Avoidance
+
+* **Resource Allocation Graph (RAG):** Dynamically builds and visualizes the RAG as resources are allocated and requested.
+
+* **Deadlock Detection:** Features a tool that actively scans the graph to detect the presence of circular wait conditions.
+
+* **Banker's Algorithm:** Computes the **Safe Sequence** for resource allocation to demonstrate deadlock avoidance.
+
+### 3. 🧠 Continuous Memory Management
+
+* **Allocation Algorithms:** Demonstrates the core continuous memory allocation strategies:
+
+    * First Fit
+
+    * Best Fit
+
+    * Worst Fit
+
+    * Next Fit
+
+* **Visualization:** Clears visualization of memory partitioning, allocation, and deallocation.
+
+* **Fragmentation Analysis:** Clearly visualizes and calculates **Internal** and **External Fragmentation** caused by the different strategies.
+
+## 🛠️ Tech Stack & Architecture
+
+This project leverages the power of Kotlin Multiplatform for cross-platform delivery:
+
+* **Core Language:** Kotlin
+
+* **Cross-Platform UI:** Compose Multiplatform (Desktop/JVM, Android, Web)
+
+* **Architecture:** MVVM/State-Driven Composables
+
+* **Targets:** Android, Desktop (JVM), and Web (WasmJs/JS)
+
+## 📦 Setup Instructions
+
+Since this is a Kotlin Multiplatform project, setup is straightforward across all environments.
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/ItsDeadlyProgrammer/OperatingSystem.git
     ```
-  - on Windows
-    ```shell
-    .\gradlew.bat :composeApp:wasmJsBrowserDevelopmentRun
-    ```
-- for the JS target (slower, supports older browsers):
-  - on macOS/Linux
-    ```shell
-    ./gradlew :composeApp:jsBrowserDevelopmentRun
-    ```
-  - on Windows
-    ```shell
-    .\gradlew.bat :composeApp:jsBrowserDevelopmentRun
-    ```
 
+2.  **Open in IntelliJ IDEA or Android Studio:**
 
+    * Use the latest stable version of IntelliJ IDEA (Ultimate recommended for Compose Multiplatform) or Android Studio.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+3.  **Run a specific target:**
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
+    * **Android:** Select the `composeApp` module and run the `androidApp` configuration on an emulator or physical device.
+
+    * **Desktop (JVM):** Run the `composeApp/run` Gradle task (or select the main desktop configuration in your IDE).
+
+    * **Web (WasmJs/JS):** Run the `composeApp:wasmJsBrowserDevelopmentRun` Gradle task and open `http://localhost:8080/` in your browser.
+
+---
+
+## 🚀 Live Demo & Downloads
+
+You can experience the application across all its supported platforms:
+
+### 🌐 Web Demo (GitHub Pages)
+
+Try the interactive simulator built with WasmJs directly in your browser:
+
+[**Launch Web Simulator**](https://itsdeadlyprogrammer.github.io/OperatingSystem/)
+
+### 📱 Android Download
+
+Download the standalone APK to install on your Android device:
+
+[![Download APK](https://img.shields.io/badge/Download-APK-brightgreen?style=for-the-badge&logo=android)](https://github.com/ItsDeadlyProgrammer/OperatingSystem/releases/download/v1.0.0/OperatingSystem.apk)
+
+### 💻 Desktop Download
+
+Download the runnable Fat JAR file for JVM Desktop environments:
+
+[![Download JAR](https://img.shields.io/badge/Download-JAR-blue?style=for-the-badge&logo=java)](https://github.com/ItsDeadlyProgrammer/OperatingSystem/releases/download/v1.0.0/OperatingSystem-1.0.0.msi)
+
+---
+
+## 🧑‍💻 Author
+
+**Harshvardhan Singh**  
+[![GitHub](https://img.shields.io/badge/GitHub-ItsDeadlyProgrammer-blue)](https://github.com/ItsDeadlyProgrammer)
+
+❤️ This project is a strong demonstration of complex data structure visualization and the power of Kotlin Multiplatform for building educational tools. Feel free to fork, explore, and contribute! PRs are always welcome. ❤️
